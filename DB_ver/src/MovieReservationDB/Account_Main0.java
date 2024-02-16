@@ -3,10 +3,10 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Account_Main {
+public class Account_Main0 {
 	public String account_main() {		
 
-		InfoIDPW info = new InfoIDPW();
+		InfoIDPW0 info = new InfoIDPW0();
 		DBconnectMov db = new DBconnectMov();
 		Scanner scanner = new Scanner(System.in);
 		

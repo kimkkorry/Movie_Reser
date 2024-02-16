@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class reservation_seat {
+public class reservation_seat0 {
 	public ArrayList<String> reservationseat(int count, String screencode) {
 		Scanner scanner = new Scanner(System.in);
 		DBconnectMov db = new DBconnectMov();

@@ -2,16 +2,16 @@ package MovieReservationDB;
 
 import java.util.ArrayList;
 
-public class Look_tables {
+public class Look_tables0 {
 	
 	public void look_movie_foreach() {
-		DAO_Movie dao = new DAO_Movie();
-		ArrayList<DTO_Movie> movies = dao.getmovie();
+		DBconnectMov db = new DBconnectMov();
+		ArrayList<MOVIE> movies = db.getmovie();
 
 		String ageprint = "";
 		System.out.printf("\n%-6s\t%-16s\t%-8s\t%-8s\t%-16s\t%-15s", "영화코드", "영화제목", "장르", "러닝타임", "등급", "개봉일");
 		System.out.println("\n===========================================================================================================");
-		for (DTO_Movie movie : movies) {
+		for (MOVIE movie : movies) {
 			if (movie.getAgegroup() == 0)
 				ageprint = "전체이용가";
 			else if (movie.getAgegroup() == 19)
@@ -26,8 +26,8 @@ public class Look_tables {
 	}
 	
 	public void look_movie_justfor() {
-		DAO_Movie dao = new DAO_Movie();
-		ArrayList<DTO_Movie> movies = dao.getmovie();
+		DBconnectMov db = new DBconnectMov();
+		ArrayList<MOVIE> movies = db.getmovie();
 		
 		String ageprint = "";
 		System.out.printf("\n%-6s%-6s\t%-16s\t%-8s\t%-8s\t%-16s\t%-15s", "번호", "영화코드", "영화제목", "장르", "러닝타임", "등급", "개봉일");
@@ -153,6 +153,16 @@ public class Look_tables {
 						,db.lookendtime(screencode));
 			}
 		}
+	}
+	public void printTheater(ArrayList<THEATER> TheaterList) {
+		System.out.printf("\n%-6s\t%-8s\t%-10s\t%-8s\t%-8s\t%-8s", "지점코드", "상영관코드", "상영관 이름", "마지막 좌석", "좌석당 금액", "청소 시간");
+		System.out.println("\n=================================================================================");
+		for(int i = 0; i < TheaterList.size(); i++) {
+			System.out.printf("%-6s\t%-8s\t%-10s\t%-8s\t%-8s\t%-8s\n",
+					TheaterList.get(i).getCentercode(), TheaterList.get(i).getTheatercode(), TheaterList.get(i).getTheatername(),
+					TheaterList.get(i).getTotalseats(), TheaterList.get(i).getSeatprice()+"원", TheaterList.get(i).getCleantime()+"분");
+		}
+		System.out.println("=================================================================================");
 	}
 
 }

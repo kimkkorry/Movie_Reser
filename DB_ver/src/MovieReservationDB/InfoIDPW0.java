@@ -3,7 +3,7 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class InfoIDPW {
+public class InfoIDPW0 {
 	public static void infoidpassword() {
 		DBconnectMov db = new DBconnectMov();
 		ArrayList<USERINFO> account = db.getuserinfo();

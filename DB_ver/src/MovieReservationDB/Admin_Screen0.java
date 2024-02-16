@@ -6,17 +6,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Admin_Screen extends Admin_Class {
+public class Admin_Screen0 extends Admin_Class {
 	Scanner sc = new Scanner(System.in);
-	DAO_Movie dm = new DAO_Movie();
-	DAO_Screen ds = new DAO_Screen();
-	DAO_Moviecenter db = new DAO_Moviecenter();
-	DAO_Theater dt = new DAO_Theater();
-	Look_tables lt = new Look_tables();
-	DBconnectMov dbt = new DBconnectMov();
+	Look_tables0 lt = new Look_tables0();
+	DBconnectMov db = new DBconnectMov();
 
 	public String makecode() {
-		ArrayList<DTO_Screen> screens = ds.getScreen();
+		ArrayList<SCREEN> screens = db.getscreen();
 		String tmp = "";
 		if (screens.size() >= 1) {
 			tmp = screens.get(screens.size()-1).getScreencode();
@@ -39,13 +35,13 @@ public class Admin_Screen extends Admin_Class {
 	}
 
 	public void add() {
-		ArrayList<DTO_Screen> screens = ds.getScreen();
+		ArrayList<SCREEN> screens = db.getscreen();
 		String screencode = makecode();
-		ArrayList<DTO_Movie> movies = dm.getmovie();
-		ArrayList<DTO_Moviecenter> moviecenters = db.getMoviecenter();
-		ArrayList<DTO_Theater> theaters = dt.getTheater();
-		ArrayList<DTO_Theater> theaterss = new ArrayList<>();
-		ArrayList<DTO_Screen> screenss = new ArrayList<>();
+		ArrayList<MOVIE> movies = db.getmovie();
+		ArrayList<MOVIECENTER> moviecenters = db.getmoviecenter();
+		ArrayList<THEATER> theaters = db.gettheater();
+		ArrayList<THEATER> theaterss = new ArrayList<>();
+		ArrayList<SCREEN> screenss = new ArrayList<>();
 		ArrayList<String> screentime = new ArrayList<>();
 		
 		System.out.println("\n\n< 새 상영 등록 >");
@@ -77,7 +73,7 @@ public class Admin_Screen extends Admin_Class {
 		//sc.nextLine();// 개행처리
 		String centername = moviecenters.get(indexcen).getCentername();
 
-		for (DTO_Theater theater : theaters) {
+		for (THEATER theater : theaters) {
 			if (theater.getCentercode().equals(moviecenters.get(indexcen).getCentercode()))
 				theaterss.add(theater);
 		}
@@ -101,9 +97,9 @@ public class Admin_Screen extends Admin_Class {
 		String screendate = sc.next();
 		//sc.nextLine();// 개행처리
 		
-		for (DTO_Screen screen : screens) {
+		for (SCREEN screen : screens) {
 			if (screen.getTheatercode().equals(theatercode)&&
-					(dbt.lookstartdate(screen.getScreencode())).equals(screendate))
+					(db.lookstartdate(screen.getScreencode())).equals(screendate))
 				screenss.add(screen);
 		}
 		
@@ -130,7 +126,7 @@ public class Admin_Screen extends Admin_Class {
 				int num = sc.nextInt();
 				switch(num) {
 				case 1:
-					ds.insertscreen(screencode, moviecode, theatercode, starttime, endtime, 0);
+					db.insertscreen(screencode, moviecode, theatercode, starttime, endtime, "0");
 					break;
 				case 2:
 					System.out.println("\n상영 등록이 취소됩니다.");
@@ -148,9 +144,9 @@ public class Admin_Screen extends Admin_Class {
 			System.out.printf("%-3s\t%-8s\t%-15s\t%-10s\t%-8s\n", "번호", "상영 날짜", "상영 시각", "영화 이름", "상영관 이름");
 			System.out.println("==========================================================================");
 			int k=1;
-			for (DTO_Screen screen : screenss) {
+			for (SCREEN screen : screenss) {
 				System.out.printf("%-3s\t%-8s\t%-4s ~ %-8s\t%-10s\t%-8s\n", 
-						k, dbt.lookstartdate(screen.getScreencode()).replace("-","/"),dbt.lookstarttime(screen.getScreencode()), dbt.lookendtime(screen.getScreencode()),
+						k, db.lookstartdate(screen.getScreencode()).replace("-","/"),db.lookstarttime(screen.getScreencode()), db.lookendtime(screen.getScreencode()),
 						moviename, theatername);
 					k+=1;
 			}
@@ -176,7 +172,7 @@ public class Admin_Screen extends Admin_Class {
 				int num = sc.nextInt();
 				switch(num) {
 				case 1:
-					ds.insertscreen(screencode, moviecode, theatercode, starttime, endtime, 0);
+					db.insertscreen(screencode, moviecode, theatercode, starttime, endtime, "0");
 					break;
 				case 2:
 					System.out.println("\n상영 등록이 취소됩니다.");
@@ -192,12 +188,12 @@ public class Admin_Screen extends Admin_Class {
 	}
 
 	public void delete() {
-		ArrayList<DTO_Screen> screens = ds.getScreen();
-		ArrayList<DTO_Movie> movies = dm.getmovie();
-		ArrayList<DTO_Moviecenter> moviecenters = db.getMoviecenter();
-		ArrayList<DTO_Theater> theaters = dt.getTheater();
-		ArrayList<DTO_Theater> theaterss = new ArrayList<>();
-		ArrayList<DTO_Screen> screenss = new ArrayList<>();
+		ArrayList<SCREEN> screens = db.getscreen();
+		ArrayList<MOVIE> movies = db.getmovie();
+		ArrayList<MOVIECENTER> moviecenters = db.getmoviecenter();
+		ArrayList<THEATER> theaters = db.gettheater();
+		ArrayList<THEATER> theaterss = new ArrayList<>();
+		ArrayList<SCREEN> screenss = new ArrayList<>();
 		
 		System.out.println("\n\n< 기존 상영 삭제 >");
 		System.out.println("\n영화 선택");
@@ -223,7 +219,7 @@ public class Admin_Screen extends Admin_Class {
 		System.out.println("=========================");
 		System.out.print("상영 삭제할 지점을 선택하세요. : ");
 		int numcen = sc.nextInt()-1;
-		for (DTO_Theater theater : theaters) {
+		for (THEATER theater : theaters) {
 			if (theater.getCentercode().equals(moviecenters.get(numcen).getCentercode()))
 				theaterss.add(theater);
 		}
@@ -242,7 +238,7 @@ public class Admin_Screen extends Admin_Class {
 		String theatercode = theaterss.get(numthe).getTheatercode();
 		String theatername = theaterss.get(numthe).getTheatername();
 		
-		for (DTO_Screen screen : screens) {
+		for (SCREEN screen : screens) {
 			if (screen.getMoviecode().equals(moviecode)&&screen.getTheatercode().equals(theatercode))
 				screenss.add(screen);
 		}
@@ -251,9 +247,9 @@ public class Admin_Screen extends Admin_Class {
 		System.out.printf("%-3s\t%-8s\t%-15s\t%-10s\t%-8s\n", "번호", "상영 날짜", "상영 시각", "영화 이름", "상영관 이름");
 		System.out.println("==========================================================================");
 		int k=1;
-		for (DTO_Screen screen : screenss) {
+		for (SCREEN screen : screenss) {
 				System.out.printf("%-3s\t%-8s\t%-4s ~ %-8s\t%-10s\t%-8s\n", 
-					k, dbt.lookstartdate(screen.getScreencode()).replace("-","/"), dbt.lookstarttime(screen.getScreencode()), dbt.lookendtime(screen.getScreencode()),
+					k, db.lookstartdate(screen.getScreencode()).replace("-","/"), db.lookstarttime(screen.getScreencode()), db.lookendtime(screen.getScreencode()),
 					moviename, theatername); 
 				k+=1;
 		}
@@ -267,8 +263,7 @@ public class Admin_Screen extends Admin_Class {
 		switch(num) {
 		case 1 :
 			for (int i=0; i<delnum.length;i++) 
-				//ds.deletescreen(screenss.get(Integer.parseInt(delnum[i])-1).getScreencode());
-			dbt.deletescreen(screenss.get(Integer.parseInt(delnum[i])-1).getScreencode());
+			db.deletescreen(screenss.get(Integer.parseInt(delnum[i])-1).getScreencode());
 			
 			break;
 		case 2 :
@@ -280,19 +275,19 @@ public class Admin_Screen extends Admin_Class {
 		}
 	}
 	
-	public ArrayList<String> selecttime(ArrayList<DTO_Screen> screens, String theatercode) {
+	public ArrayList<String> selecttime(ArrayList<SCREEN> screens, String theatercode) {
 		ArrayList<String> selecttime = new ArrayList<>();
-		ArrayList<DTO_Theater> theaters = dt.getTheater();
+		ArrayList<THEATER> theaters = db.gettheater();
 		int cleantime = 0;
-		for (DTO_Theater theater : theaters) {
+		for (THEATER theater : theaters) {
 			if (theater.getTheatercode().equals(theatercode))
 				cleantime = theater.getCleantime();
 		}
-		for (DTO_Screen screen : screens) {
-			int starthour = Integer.parseInt(dbt.lookstarttime(screen.getScreencode()).substring(0,2));
-			int startmin = Integer.parseInt(dbt.lookstarttime(screen.getScreencode()).substring(3,5));
-			int endhour = Integer.parseInt(dbt.lookendtime(screen.getScreencode()).substring(0,2));
-			int endmin = Integer.parseInt(dbt.lookendtime(screen.getScreencode()).substring(3,5));
+		for (SCREEN screen : screens) {
+			int starthour = Integer.parseInt(db.lookstarttime(screen.getScreencode()).substring(0,2));
+			int startmin = Integer.parseInt(db.lookstarttime(screen.getScreencode()).substring(3,5));
+			int endhour = Integer.parseInt(db.lookendtime(screen.getScreencode()).substring(0,2));
+			int endmin = Integer.parseInt(db.lookendtime(screen.getScreencode()).substring(3,5));
 			
 			String startttime = makestarttime(starthour, startmin, cleantime);
 			String endtime = makeendtime(endhour, endmin, cleantime);

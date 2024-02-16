@@ -7,11 +7,11 @@ public class Movie_main_v2 {
 public static void main(String[] args) throws IOException{
 	Scanner scanner = new Scanner(System.in);
 	DBconnectMov db = new DBconnectMov();
-	Account_Main account = new Account_Main();
-	Add_reser reser = new Add_reser();
+	Account_Main0 account = new Account_Main0();
+	Add_reser0 reser = new Add_reser0();
 	See_mov_cen see = new See_mov_cen();
 	Reservation_cancel cancel = new Reservation_cancel();
-	Admin_UI adminUI = new Admin_UI();
+	Admin_UI0 adminUI = new Admin_UI0();
 	String ID = "";
 	String moviecode = "";
 	String centercode = "";

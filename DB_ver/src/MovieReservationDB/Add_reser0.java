@@ -3,7 +3,7 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Add_reser {
+public class Add_reser0 {
 public void addreser(String ID, String moviecode, String centercode) {
 	DBconnectMov db = new DBconnectMov();
 	ArrayList<MOVIE> movies = db.getmovie();
@@ -12,8 +12,8 @@ public void addreser(String ID, String moviecode, String centercode) {
 	ArrayList<SCREEN> screens = db.getscreen();
 	
 	
-	Look_tables look = new Look_tables();
-	reservation_seat reser = new reservation_seat();
+	Look_tables0 look = new Look_tables0();
+	reservation_seat0 reser = new reservation_seat0();
 	Scanner scanner = new Scanner(System.in);
 	String screencode = "";
 	String theatercode = "";

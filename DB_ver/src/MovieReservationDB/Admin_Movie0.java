@@ -3,13 +3,13 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin_Movie extends Admin_Class {
+public class Admin_Movie0 {
 		
-	@Override
+	Scanner sc = new Scanner(System.in);
+	DBconnectMov db = new DBconnectMov();
+	
 	public void add() {
 			
-		Scanner sc = new Scanner(System.in);
-		DAO_Movie db = new DAO_Movie();
 		outer: while (true) {		
 			System.out.println("\n< 새 영화 등록 >");
 			System.out.println("=========================");
@@ -58,17 +58,14 @@ public class Admin_Movie extends Admin_Class {
 					System.out.print("올바른 번호를 입력해주세요. : ");
 					continue;
 				}			
-			}	// while문 종료
-		}	// outer:while문 종료
+			}	
+		}	
 	
-	}	// Admin_Movie add()의 끝
+	}	
 	
-	@Override
 	public String makecode() {
 		
-		DAO_Movie db = new DAO_Movie();
-		
-		ArrayList<DTO_Movie> movies = db.getmovie();
+		ArrayList<MOVIE> movies = db.getmovie();
 		ArrayList<String> moviecodes = new ArrayList<>();
 		
 		for ( int i = 0; i < movies.size(); i++) {
@@ -88,13 +85,10 @@ public class Admin_Movie extends Admin_Class {
 		
 		return moviecode;
 		
-	}	// Admin_Movie makecode의 끝()
+	}	
 	
-	@Override
 	public void change() {
-		Look_tables look = new Look_tables();
-		Scanner sc = new Scanner(System.in);
-		DAO_Movie db = new DAO_Movie();
+		Look_tables0 look = new Look_tables0();
 		
 		outer: while(true) {
 			System.out.println("\n< 영화 정보 수정 >");
@@ -103,8 +97,8 @@ public class Admin_Movie extends Admin_Class {
 			String selectMovie = sc.next();
 			sc.nextLine();
 			
-			ArrayList<DTO_Movie> movies = db.getmovie();
-			DTO_Movie movie = movies.get(Integer.parseInt(selectMovie)-1);
+			ArrayList<MOVIE> movies = db.getmovie();
+			MOVIE movie = movies.get(Integer.parseInt(selectMovie)-1);
 			String moviecode = movie.getMoviecode();
 			
 			System.out.printf("\n영화 [%s]의 수정 정보를 입력하세요. (변경사항이 없을 시 '308')", movie.getMoviename());
@@ -139,7 +133,7 @@ public class Admin_Movie extends Admin_Class {
 				String select = sc.next();
 				sc.nextLine();
 				if (select.equals("1")) {
-					db.updateMovie(moviecode, moviename, thema, runtime, agegroup, opendate);
+					db.updateMovie(moviecode, moviename, thema, runtime, agegroup, 0,opendate);
 					System.out.println("\n영화 [" + moviename + "]의 정보가 수정 완료 되었습니다.");
 					System.out.println("상영 영화 관리 메뉴로 돌아갑니다.");
 					break outer;
@@ -157,17 +151,13 @@ public class Admin_Movie extends Admin_Class {
 					System.out.print("올바른 번호를 입력해주세요. : ");
 					continue;
 				}			
-			}	// while문 종료
-		}	// outer:while문 종료
+			}	
+		}	
 		
-	}	// Admin_Movie change()의 종료
+	}	
 	
-	@Override
 	public void delete() {
-		Look_tables look = new Look_tables();
-		Scanner sc = new Scanner(System.in);
-		DAO_Movie db = new DAO_Movie();
-		DBconnectMov dbt = new DBconnectMov();
+		Look_tables0 look = new Look_tables0();
 			
 		System.out.println("\n< 기존 영화 삭제 >");
 		look.look_movie_justfor();
@@ -175,8 +165,8 @@ public class Admin_Movie extends Admin_Class {
 		String selectMovie = sc.next();
 		sc.nextLine();
 			
-		ArrayList<DTO_Movie> movies = db.getmovie();
-		DTO_Movie movie = movies.get(Integer.parseInt(selectMovie)-1);
+		ArrayList<MOVIE> movies = db.getmovie();
+		MOVIE movie = movies.get(Integer.parseInt(selectMovie)-1);
 		String moviecode = movie.getMoviecode();
 		
 		String moviename = "";
@@ -188,7 +178,7 @@ public class Admin_Movie extends Admin_Class {
 			String select = sc.next();
 			sc.nextLine();
 			if (select.equals("1")) {
-				dbt.deleteMovie(moviecode, moviename);
+				db.deleteMovie(moviecode, moviename);
 				System.out.printf("\n영화 [%s]이(가) 삭제되었습니다.\n", moviename);
 				System.out.println("상영 영화 관리 메뉴로 돌아갑니다.");
 				break;
@@ -202,8 +192,8 @@ public class Admin_Movie extends Admin_Class {
 				System.out.println("올바른 번호를 입력해주세요. : ");
 				continue;
 			}			
-		}	// while문 종료
+		}	
 			
-	}	// Admin_Movie delete()의 끝
+	}	
 	
-}	// Admin_Movie class의 끝
+}	

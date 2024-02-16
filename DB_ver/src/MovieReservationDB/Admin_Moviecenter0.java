@@ -3,13 +3,13 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Admin_Moviecenter extends Admin_Class {
+class Admin_Moviecenter0 extends Admin_Class {
 	Scanner sc = new Scanner(System.in);
-	DAO_Moviecenter db = new DAO_Moviecenter();
+	DBconnectMov db = new DBconnectMov();
 	ArrayList<String> centercodes = new ArrayList<>();
 
 	public String makecode() {
-	      ArrayList<DTO_Moviecenter> centers = db.getMoviecenter();
+	      ArrayList<MOVIECENTER> centers = db.getmoviecenter();
 	      String tmp = "";
 	      if(centers.size()>=1) {
 	    	  tmp = centers.get(0).getCentercode();
@@ -26,6 +26,7 @@ class Admin_Moviecenter extends Admin_Class {
 	      }  
 	      return centercode;
 	   } 	
+	
 	public void add() {
 		String centercode = makecode();
 		System.out.println("\n");
@@ -53,7 +54,7 @@ class Admin_Moviecenter extends Admin_Class {
 		}
 	}
 	public void change() {
-		ArrayList<DTO_Moviecenter> moviecenters = db.getMoviecenter();
+		ArrayList<MOVIECENTER> moviecenters = db.getmoviecenter();
 		System.out.println("\n");
 		System.out.println("< 지점 정보 수정 >");
 		System.out.println("============================");
@@ -100,7 +101,7 @@ class Admin_Moviecenter extends Admin_Class {
 		}
 	}
 	public void delete() {
-		ArrayList<DTO_Moviecenter> moviecenters = db.getMoviecenter();
+		ArrayList<MOVIECENTER> moviecenters = db.getmoviecenter();
 		System.out.println("\n");
 		System.out.println("< 기존 지점 삭제 >");
 		System.out.println("===========================");

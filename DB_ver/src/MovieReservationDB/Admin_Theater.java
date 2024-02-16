@@ -5,13 +5,12 @@ import java.util.Scanner;
 public class Admin_Theater extends Admin_Class {
 	
 	Scanner sc = new Scanner(System.in);
-	DAO_Theater dt = new DAO_Theater();
-	ArrayList<String> thecodes = new ArrayList<>(); // theatercode 리스트
-	Look_tables look = new Look_tables();
+	ArrayList<String> thecodes = new ArrayList<>(); 
+	Look_tables0 look = new Look_tables0();
 	DBconnectMov db = new DBconnectMov();
 	
-	public String makecode() { // 코드생성 메소드
-		ArrayList<DTO_Theater> theaters = dt.getTheater();
+	public String makecode() { 
+		ArrayList<THEATER> theaters = db.gettheater();
 		
 		String tmp = "";
 		if( theaters.size() >= 1 ) { tmp = theaters.get(theaters.size()-1).getTheatercode(); }
@@ -31,7 +30,7 @@ public class Admin_Theater extends Admin_Class {
 		return theatercode;
 	}
 
-	public void add() { // Theater Table 데이터 추가
+	public void add() { 
 		System.out.println("\n\n< 새 상영관 등록 >");
 		String thecode = makecode();
 		
@@ -67,8 +66,7 @@ public class Admin_Theater extends Admin_Class {
 		
 		switch(in) {
 		case "1":
-			dt.insertTheater(thecode, theatername, moviecenter, seatprice, cleantime, totalseats);
-			//theaters.add(thecode, theatername, moviecenter, seatprice, cleantime, totalseats);
+			db.insertTheater(thecode, theatername, moviecenter, seatprice, cleantime, totalseats);
 			break;
 		case "2":
 			System.out.println("상영관 등록을 취소하셨습니다. 새로운 등록을 원하시면 처음부터 다시 진행하세요.");
@@ -79,27 +77,22 @@ public class Admin_Theater extends Admin_Class {
 		
 	} // add method
 
-	public void change() { // Theater Table 데이터 수정
+	public void change() { 
 		System.out.println("\n\n< 상영관 정보 수정 >");
 		
-		// 3. 지점코드, 지점이름 출력 후 선택 >> 상영관이름 + 상영관 코드 중 선택 >> 상영관코드, 상영관이름, 좌석수, 가격, 청소시간 change
-		// 4. 상영관 코드 출력 >> 바꿀 상영관코드 입력 >> change 진행
-//		System.out.println("지점코드 \t 지점명 \t 지점주소");
-//		for(int i = 0; i < moviecenters.size(); i++) {
-//			System.out.println(moviecenters.get(i).getCentercode + " \t " + moviecenters.get(i).getCentername + " \t " + moviecenters.get(i).getAddress);
-//		}
-		dt.printTheater(dt.getTheater());
+		look.printTheater(db.gettheater());
+		look.printTheater(db.gettheater());
 		System.out.print("수정할 상영관의 지점코드를 입력하세요. : ");
 		String ccode = sc.nextLine();
 		
 		System.out.printf("\n선택한 지점 [%s]에 등록된 상영관 목록을 출력합니다.\n", ccode);
-		dt.selectCentercode(ccode);
+		look.look_theater_foreach(ccode);
 		
 		System.out.print("수정할 상영관의 상영관코드를 입력하세요. : ");
 		String tcode = sc.nextLine();
 		
 		System.out.printf("\n선택한 상영관 [%s]의 정보를 출력합니다.\n", tcode);
-		dt.selectTheatercode(tcode);
+		look.
 		
 		System.out.printf("\n선택한 상영관이 맞습니까? 1. 예 | 2. 아니요");
 		System.out.print("\n원하는 메뉴를 선택하세요. : ");
