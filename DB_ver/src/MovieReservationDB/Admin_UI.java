@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class Admin_UI0 {
+public class Admin_UI {
 	Scanner sc = new Scanner(System.in);
 	
 	public void PromptAdmin() throws IOException{
@@ -55,7 +55,7 @@ public class Admin_UI0 {
 	}	
 	
 	public void PromptMovie() {
-		Admin_Movie0 Movie = new Admin_Movie0();
+		Admin_Movie Movie = new Admin_Movie();
 		
 		String Admin_Movie_Prompt = """
 				[30VI8]
@@ -95,7 +95,7 @@ public class Admin_UI0 {
 		
 	}	
 	public void PromptScreen() { 
-		Admin_Screen0 Screen = new Admin_Screen0();
+		Admin_Screen Screen = new Admin_Screen();
 		String ScreenPrompt = """
 				[30VI8]
 				상영 관리
@@ -127,7 +127,7 @@ public class Admin_UI0 {
 		}
 		
 		public void PromptMoviecenter() { //지점 프롬프트
-		Admin_Moviecenter0 Moviecenter = new Admin_Moviecenter0();	
+		Admin_Moviecenter Moviecenter = new Admin_Moviecenter();	
 		String MoviecenterPrompt = """
 				[30VI8]
 				지점 관리
@@ -199,7 +199,7 @@ public class Admin_UI0 {
 			}
 		}
 		public void PromptInquiry() throws IOException{
-			Make_file0 file = new Make_file0();
+			Make_file file = new Make_file();
 		
 			String Admin_Prompt = """
 				[30VI8]

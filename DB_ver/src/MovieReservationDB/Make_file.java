@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class Make_file0 {
+public class Make_file {
 public void movielist() throws IOException{
 	Scanner scanner = new Scanner(System.in);
 	DBconnectMov db = new DBconnectMov();

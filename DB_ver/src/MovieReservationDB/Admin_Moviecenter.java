@@ -3,7 +3,7 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Admin_Moviecenter0 extends Admin_Class {
+class Admin_Moviecenter extends Admin_Class {
 	Scanner sc = new Scanner(System.in);
 	DBconnectMov db = new DBconnectMov();
 	ArrayList<String> centercodes = new ArrayList<>();

@@ -2,7 +2,7 @@ package MovieReservationDB;
 
 import java.util.ArrayList;
 
-public class Look_Movie_Table0 {
+public class Look_Movie_Table {
 	// MOVIE 리스트 출력
 	public void look_movie() {
 		DBconnectMov db = new DBconnectMov();

@@ -6,9 +6,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Admin_Screen0 extends Admin_Class {
+public class Admin_Screen extends Admin_Class {
 	Scanner sc = new Scanner(System.in);
-	Look_tables0 lt = new Look_tables0();
+	Look_tables lt = new Look_tables();
 	DBconnectMov db = new DBconnectMov();
 
 	public String makecode() {

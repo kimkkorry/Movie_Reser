@@ -3,7 +3,7 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Add_reser0 {
+public class Add_reser {
 public void addreser(String ID, String moviecode, String centercode) {
 	DBconnectMov db = new DBconnectMov();
 	ArrayList<MOVIE> movies = db.getmovie();
@@ -12,8 +12,8 @@ public void addreser(String ID, String moviecode, String centercode) {
 	ArrayList<SCREEN> screens = db.getscreen();
 	
 	
-	Look_tables0 look = new Look_tables0();
-	reservation_seat0 reser = new reservation_seat0();
+	Look_tables look = new Look_tables();
+	reservation_seat reser = new reservation_seat();
 	Scanner scanner = new Scanner(System.in);
 	String screencode = "";
 	String theatercode = "";
@@ -54,7 +54,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 		if (theater.getCentercode().equals(centercode))
 			theatercode = theater.getTheatercode();
 	}
-	look.look_screen_justfor(moviecode, theatercode);
+	look.look_screen_justfor(theatercode);
 	System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 	screencode = screens.get(scanner.nextInt()-1).getScreencode();
 	System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -75,7 +75,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 			if (theater.getCentercode().equals(centercode))
 				theatercode = theater.getTheatercode();
 		}
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -97,7 +97,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 				theatercode = theater.getTheatercode();
 		}
 		
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -116,7 +116,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 				theatercode = theater.getTheatercode();
 		}
 		
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -140,7 +140,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 			if (theater.getCentercode().equals(centercode))
 				theatercode = theater.getTheatercode();
 		}
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -161,7 +161,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 			if (theater.getCentercode().equals(centercode))
 				theatercode = theater.getTheatercode();
 		}
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -183,7 +183,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 				theatercode = theater.getTheatercode();
 		}
 		
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");
@@ -202,7 +202,7 @@ public void addreser(String ID, String moviecode, String centercode) {
 				theatercode = theater.getTheatercode();
 		}
 		
-		look.look_screen_justfor(moviecode, theatercode);
+		look.look_screen_justfor(theatercode);
 		System.out.println("위 상영 정보들 중 선택하실 상영 정보의 번호를 입력해주세요.");
 		screencode = screens.get(scanner.nextInt()-1).getScreencode();
 		System.out.println("다음으로 예약하실 분들의 인원수를 입력해주세요.");

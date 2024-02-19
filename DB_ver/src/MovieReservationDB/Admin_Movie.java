@@ -3,7 +3,7 @@ package MovieReservationDB;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin_Movie0 {
+public class Admin_Movie {
 		
 	Scanner sc = new Scanner(System.in);
 	DBconnectMov db = new DBconnectMov();
@@ -88,7 +88,7 @@ public class Admin_Movie0 {
 	}	
 	
 	public void change() {
-		Look_tables0 look = new Look_tables0();
+		Look_tables look = new Look_tables();
 		
 		outer: while(true) {
 			System.out.println("\n< 영화 정보 수정 >");
@@ -157,7 +157,7 @@ public class Admin_Movie0 {
 	}	
 	
 	public void delete() {
-		Look_tables0 look = new Look_tables0();
+		Look_tables look = new Look_tables();
 			
 		System.out.println("\n< 기존 영화 삭제 >");
 		look.look_movie_justfor();

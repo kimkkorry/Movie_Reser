@@ -2,10 +2,10 @@ package MovieReservationDB;
 
 import java.util.ArrayList;
 
-public class Look_tables0 {
+public class Look_tables {
+	DBconnectMov db = new DBconnectMov();
 	
 	public void look_movie_foreach() {
-		DBconnectMov db = new DBconnectMov();
 		ArrayList<MOVIE> movies = db.getmovie();
 
 		String ageprint = "";
@@ -26,7 +26,6 @@ public class Look_tables0 {
 	}
 	
 	public void look_movie_justfor() {
-		DBconnectMov db = new DBconnectMov();
 		ArrayList<MOVIE> movies = db.getmovie();
 		
 		String ageprint = "";
@@ -46,7 +45,6 @@ public class Look_tables0 {
 	}
 	
 	public void look_moviecenter_foreach() {
-		DBconnectMov db = new DBconnectMov();
 		ArrayList<MOVIECENTER> moviecenters = db.getmoviecenter();
 
 		System.out.printf("\n%-6s\t%-8s\t%-20s", "지점코드", "지점명", "주소");
@@ -57,7 +55,6 @@ public class Look_tables0 {
 	}
 	
 	public void look_moviecenter_justfor() {
-		DBconnectMov db = new DBconnectMov();
 		ArrayList<MOVIECENTER> moviecenters = db.getmoviecenter();
 
 		System.out.printf("\n%-3s\t%-8s\t%-20s", "번호", "지점명", "주소");
@@ -68,7 +65,6 @@ public class Look_tables0 {
 	}
 	
 	public void look_theater_foreach(String centercode) {
-		DBconnectMov db = new DBconnectMov();
 		ArrayList<THEATER> theaters = db.gettheater();
 		
 		System.out.println("상영관 코드\t상영관 이름\t상영관 가격\t청소시간\t맨끝좌석");
@@ -82,7 +78,6 @@ public class Look_tables0 {
 	}
 	
 	public void look_theater_justfor(String centercode) {
-		DBconnectMov db = new DBconnectMov();
 		ArrayList<THEATER> theaters = db.gettheater();
 				
 		System.out.printf("\n%-3s\t%-8s\t%-8s\t%-8s\t%-8s","번호", "상영관 이름", "마지막 좌석", "좌석당 가격", "청소시간");
@@ -95,18 +90,33 @@ public class Look_tables0 {
 		System.out.println("=================================================================");
 	}
 	
-	public void look_screen_foreach(String moviecode, String theatercode) {
-		DBconnectMov db = new DBconnectMov();
-		ArrayList<SCREEN> screens = db.getscreen();
+	public void look_theater_foreach_All() {
+ArrayList<THEATER> theaters = db.gettheater();
+		
+		System.out.println("상영관 코드\t상영관 이름\t상영관 가격\t청소시간\t맨끝좌석");
+		System.out.println("====================================================");
+		for (THEATER theater : theaters) {
+				System.out.printf("%s\t\t%s\t%s\t%s\t%s\n", theater.getTheatercode(), theater.getTheatername(), 
+						theater.getSeatprice()+"원", theater.getCleantime()+"분", theater.getTotalseats());
+		}
+		System.out.println("====================================================");
+	}
+	
+	public String moviename(String moviecode) {
 		ArrayList<MOVIE> movies = db.getmovie();
-		ArrayList<THEATER> theaters = db.gettheater();
 		String moviename = "";
-		String theatername = "";
 		
 		for (MOVIE movie : movies) {
 			if (moviecode.equals(movie.getMoviecode()))
 				moviename = movie.getMoviename();
 		}
+		
+		return moviename;
+	}
+	public void look_screen_foreach(String theatercode) {
+		ArrayList<SCREEN> screens = db.getscreen();
+		ArrayList<THEATER> theaters = db.gettheater();
+		String theatername = "";
 		
 		for (THEATER theater : theaters) {
 			if (theatercode.equals(theater.getTheatercode()))
@@ -116,27 +126,19 @@ public class Look_tables0 {
 		System.out.println("상영 코드\t상영 영화 이름\t\t상영관 이름\t상영 날짜\t상영 시각");
 		System.out.println("=============================================================");
 		for (SCREEN screen : screens) {
-			if (screen.getMoviecode().equals(moviecode)&&screen.getTheatercode().equals(theatercode)) {
+			if (screen.getTheatercode().equals(theatercode)) {
 				String screencode = screen.getScreencode();
-				System.out.printf("%s\t\t%s\t\t%s\t\t%s\t%s ~ %s\n", screen.getScreencode(), moviename, 
+				System.out.printf("%s\t\t%s\t\t%s\t\t%s\t%s ~ %s\n", screen.getScreencode(), moviename(screen.getMoviecode()), 
 						theatername, db.lookstartdate(screencode).replace("-","/"),
 						db.lookstarttime(screencode), db.lookendtime(screencode));
 			}
 		}
 	}
 	
-	public void look_screen_justfor(String moviecode, String theatercode) {
-		DBconnectMov db = new DBconnectMov();
+	public void look_screen_justfor(String theatercode) {
 		ArrayList<SCREEN> screens = db.getscreen();
-		ArrayList<MOVIE> movies = db.getmovie();
 		ArrayList<THEATER> theaters = db.gettheater();
-		String moviename = "";
 		String theatername = "";
-		
-		for (MOVIE movie : movies) {
-			if (moviecode.equals(movie.getMoviecode()))
-				moviename = movie.getMoviename();
-		}
 		
 		for (THEATER theater : theaters) {
 			if (theatercode.equals(theater.getTheatercode()))
@@ -146,9 +148,9 @@ public class Look_tables0 {
 		System.out.println("번호 상영 영화 이름\t\t상영관 이름\t상영 날짜\t상영 시각");
 		System.out.println("====================================================================");
 		for (int i=0; i<screens.size();i++) {
-			if (screens.get(i).getMoviecode().equals(moviecode)&&screens.get(i).getTheatercode().equals(theatercode)) {
+			if (screens.get(i).getTheatercode().equals(theatercode)) {
 				String screencode = screens.get(i).getScreencode();
-				System.out.printf("%s. %s\t\t%s\t\t%s\t%s ~ %s\n", i+1, moviename, 
+				System.out.printf("%s. %s\t\t%s\t\t%s\t%s ~ %s\n", i+1, moviename(screens.get(i).getMoviecode()), 
 						theatername,db.lookstartdate(screencode), db.lookstarttime(screencode)
 						,db.lookendtime(screencode));
 			}

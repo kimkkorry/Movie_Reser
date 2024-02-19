@@ -6,7 +6,7 @@ public class Admin_Theater extends Admin_Class {
 	
 	Scanner sc = new Scanner(System.in);
 	ArrayList<String> thecodes = new ArrayList<>(); 
-	Look_tables0 look = new Look_tables0();
+	Look_tables look = new Look_tables();
 	DBconnectMov db = new DBconnectMov();
 	
 	public String makecode() { 
@@ -92,7 +92,7 @@ public class Admin_Theater extends Admin_Class {
 		String tcode = sc.nextLine();
 		
 		System.out.printf("\n선택한 상영관 [%s]의 정보를 출력합니다.\n", tcode);
-		look.
+		look.look_screen_foreach(tcode);
 		
 		System.out.printf("\n선택한 상영관이 맞습니까? 1. 예 | 2. 아니요");
 		System.out.print("\n원하는 메뉴를 선택하세요. : ");
@@ -125,7 +125,7 @@ public class Admin_Theater extends Admin_Class {
 			
 			switch(in) {
 				case "1":
-					dt.changeTheater(tcode, tname, ccode, tp, ct, tseat);
+					db.updateTheater(tcode, tname, ccode, tp, ct, tseat);
 					break;
 				case "2":
 					System.out.println("일치하지 않다를 선택하셨습니다. 다시 입력해주세요");
@@ -137,17 +137,18 @@ public class Admin_Theater extends Admin_Class {
 	} // change method
 
 	public void delete() { // Theater Table 데이터 삭제
-		ArrayList<DTO_Theater> theaters = dt.getTheater();
+		ArrayList<THEATER> theaters = db.gettheater();
 		ArrayList<MOVIECENTER> centers = db.getmoviecenter();
+		Look_tables look = new Look_tables();
 		System.out.println("\n\n< 기존 상영관 삭제 >");
 		
-		dt.printTheater(dt.getTheater());
+		look.look_theater_foreach_All();
 		System.out.print("삭제할 상영관의 상영관 코드를 입력하세요. : ");
 		String tcode = sc.nextLine();
 		
 		String theatername = "";
 		String centercode = "";
-		for (DTO_Theater theater : theaters) {
+		for (THEATER theater : theaters) {
 			if (tcode.equals(theater.getTheatercode())) {
 				theatername = theater.getTheatername();
 				centercode = theater.getCentercode();
