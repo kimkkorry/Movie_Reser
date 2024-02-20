@@ -331,7 +331,7 @@ moviecode, theatercode, starttime, endtime, soldseats, screencode);
 			String startdate = "";
 			stmt = conn.createStatement();
 			String date = "SELECT DATE_FORMAT(starttime, '%Y/%m/%d') ";
-			String sql = date + String.format("FROM screen WHERE screencode = '%s'" , screencode);
+			String sql = date + String.format("FROM SCREEN WHERE screencode = '%s'" , screencode);
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 			startdate = rs.getString(1);
@@ -350,7 +350,7 @@ moviecode, theatercode, starttime, endtime, soldseats, screencode);
 			String enddate = "";
 			stmt = conn.createStatement();
 			String date = "SELECT DATE_FORMAT(endtime, '%Y/%m/%d') ";
-			String sql = date + String.format("FROM screen WHERE screencode = '%s'" , screencode);
+			String sql = date + String.format("FROM SCREEN WHERE screencode = '%s'" , screencode);
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 			enddate = rs.getString(1);
@@ -371,7 +371,7 @@ moviecode, theatercode, starttime, endtime, soldseats, screencode);
 			String starttime = "";
 			stmt = conn.createStatement();
 			String time = "SELECT DATE_FORMAT(starttime, '%H:%i') ";
-			String sql = time + String.format("FROM screen WHERE screencode = '%s'" , screencode);
+			String sql = time + String.format("FROM SCREEN WHERE screencode = '%s'" , screencode);
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 			starttime = rs.getString(1);
@@ -392,7 +392,7 @@ moviecode, theatercode, starttime, endtime, soldseats, screencode);
 			String endtime = "";
 			stmt = conn.createStatement();
 			String time = "SELECT DATE_FORMAT(endtime, '%H:%i') ";
-			String sql = time + String.format("FROM screen WHERE screencode = '%s'" , screencode);
+			String sql = time + String.format("FROM SCREEN WHERE screencode = '%s'" , screencode);
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 			endtime = rs.getString(1);
@@ -445,7 +445,7 @@ public ArrayList<String> jointhmc(String theatercode) {
 		try {
 			stmt = conn.createStatement();
 			String sql = String.format("select THEATER.*, MOVIECENTER.* from THEATER inner join MOVIECENTER on "
-					+ "THEATER.centercode = MOVIECENTER.centercode where theater.centercode = '%s'", centercode);
+					+ "THEATER.centercode = MOVIECENTER.centercode where THEATER.centercode = '%s';", centercode);
 			
 			rs = stmt.executeQuery(sql);
 			
@@ -484,7 +484,7 @@ public ArrayList<String> joinscrmov(String screencode) {
 	try {
 		stmt = conn.createStatement();
 		String sql = String.format("select MOVIE.*, SCREEN.* from MOVIE inner join SCREEN on"
-				+ " MOVIE.moviecode = SCREEN.moviecode where MOVIE.moviecode = '%s'", moviecode);
+				+ " MOVIE.moviecode = SCREEN.moviecode where MOVIE.moviecode = '%s';", moviecode);
 		
 		rs = stmt.executeQuery(sql);
 		
@@ -527,7 +527,7 @@ public ArrayList<String> joinscrthe(String screencode) {
 	try {
 		stmt = conn.createStatement();
 		String sql = String.format("select THEATER.*, SCREEN.* from THEATER inner join SCREEN on "
-				+ "THEATER.theatercode = SCREEN.theatercode where SCREEN.theatercode = '%s'", theatercode);
+				+ "THEATER.theatercode = SCREEN.theatercode where SCREEN.theatercode = '%s';", theatercode);
 		
 		rs = stmt.executeQuery(sql);
 		
@@ -569,7 +569,7 @@ public ArrayList<String> joinresthe(String reservenumber) {
 	try {
 		stmt = conn.createStatement();
 		String sql = String.format("select RESERVATION.*, THEATER.* from RESERVATION inner join THEATER on "
-				+ "RESERVATION.theatercode = THEATER.theatercode where THEATER.theatercode = '%s'", theatercode);
+				+ "RESERVATION.theatercode = THEATER.theatercode where THEATER.theatercode = '%s';", theatercode);
 		
 		rs = stmt.executeQuery(sql);
 		
@@ -617,7 +617,7 @@ public ArrayList<String> joinresscr(String reservenumber) {
 	try {
 		stmt = conn.createStatement();
 		String sql = String.format("select RESERVATION.*, SCREEN.* from RESERVATION inner join SCREEN on "
-				+ "RESERVATION.screencode = SCREEN.screencode where RESERVATION.screencode = '%s'", screencode);
+				+ "RESERVATION.screencode = SCREEN.screencode where RESERVATION.screencode = '%s';", screencode);
 		
 		rs = stmt.executeQuery(sql);
 		
@@ -660,7 +660,7 @@ public ArrayList<String> joinresmov(String reservenumber) {
 	try {
 		stmt = conn.createStatement();
 		String sql = String.format("select RESERVATION.*, MOVIE.* from RESERVATION inner join MOVIE on "
-				+ "RESERVATION.moviecode = MOVIE.moviecode where RESERVATION.moviecode =  '%s'", moviecode);
+				+ "RESERVATION.moviecode = MOVIE.moviecode where RESERVATION.moviecode =  '%s';", moviecode);
 		
 		rs = stmt.executeQuery(sql);
 		

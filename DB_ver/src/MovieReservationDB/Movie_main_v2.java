@@ -38,7 +38,7 @@ public static void main(String[] args) throws IOException{
 			else {
 				prompt += """
 				=  5. 마이페이지   \t=
-				=  6. 로그아웃   \t=
+				=  6. 로그아웃   \t\t=
 				=  7. 프로그램 종료   \t=
 				=========================
 				원하는 메뉴를 선택하세요 : """;
