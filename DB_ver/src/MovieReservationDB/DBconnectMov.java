@@ -12,9 +12,9 @@ public class DBconnectMov {
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	private static final String url = "jdbc:mysql://13.124.144.111:3306/Tiketing?severTimezone=UTC";
-	private static final String user = "usrid";
-	private static final String pass = "usrpassword";
+	private static final String url = "jdbc:mysql://kimtaeil-mysql.c96o4c2qqivv.ap-northeast-2.rds.amazonaws.com:3306/Tiketing?severTimezone=UTC";
+	private static final String user = "admin";
+	private static final String pass = "aksghk2389";
 	
 	public DBconnectMov() {
 		conn=getConnection();
@@ -241,7 +241,7 @@ selectseat, moviecode, screencode, theatercode, birth, phone, pw, usercheck, res
 	      try {
 	        stmt = conn.createStatement();
 
-	        String sql = String.format("INSERT INTO USERINFO (ID, userpw, username, phone, birth, ninkname, userpoint) VALUES ('%s','%s','%s','%s','%s','%s', '%s')"
+	        String sql = String.format("INSERT INTO USERINFO (ID, userpw, username, phone, birth, nickname, userpoint) VALUES ('%s','%s','%s','%s','%s','%s', '%s')"
 	        		, ID, userpw, username, phone, birth, ninkname, userpoint);
 	         stmt.executeUpdate(sql);
 	         System.out.printf("%s님 회원 등록이 완료되었습니다.\n", username);
@@ -254,7 +254,7 @@ selectseat, moviecode, screencode, theatercode, birth, phone, pw, usercheck, res
 		//============== DB작업 ================
 		try {
 			stmt = conn.createStatement();
-			String sql = String.format("UPDATE USERINFO SET userpw = '%s' , username = '%s', phone = '%s', birth = '%s', ninkname = '%s', userpoint = '%s' WHERE ID = '%s'", 
+			String sql = String.format("UPDATE USERINFO SET userpw = '%s' , username = '%s', phone = '%s', birth = '%s', nickname = '%s', userpoint = '%s' WHERE ID = '%s'", 
 userpw, username, phone, birth, ninkname, userpoint, ID);
 		stmt.executeUpdate(sql);
 		System.out.printf("%s님 회원 수정이 완료되었습니다.\n", username);
@@ -709,10 +709,10 @@ public ArrayList<String> joinresmov(String reservenumber) {
 				String username = rs.getString("username");
 				String phone = rs.getString("phone");
 				String birth = rs.getString("birth");
-				String ninkname = rs.getString("ninkname");
+				String nickname = rs.getString("nickname");
 				String userpoint = rs.getString("userpoint");
 				
-				USERINFO a1 = new USERINFO(ID, userpw, username, phone, birth, ninkname);
+				USERINFO a1 = new USERINFO(ID, userpw, username, phone, birth, nickname);
 				AddrList.add(a1);
 			}
 		}catch (Exception e) {
