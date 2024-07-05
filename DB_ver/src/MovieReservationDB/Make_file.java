@@ -45,7 +45,8 @@ public void movielist() throws IOException{
 					 String moviecode = moviename.substring(moviename.length()-4,moviename.length());	
 					if (moviecode.equals(movie.getMoviecode()))
 							pw.printf("%s,%s,%s,%s,%s,%s\n",
-									movie.getMoviecode(),movie.getMoviename(), movie.getThema(), movie.getRuntime()+"분", movie.getAgegroup()+"세",
+									movie.getMoviecode(),movie.getMoviename(), movie.getThema(), 
+									movie.getRuntime()+"분", movie.getAgegroup()+"세",
 									movie.getSalesrate()+"%");
 					}
 				}

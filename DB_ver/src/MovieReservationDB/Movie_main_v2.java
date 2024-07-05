@@ -22,8 +22,8 @@ public static void main(String[] args) throws IOException{
 				[30VI8]
 				영화 예매 관리 시스템
 				=========================
-				=  1. 영화별 조회   \t=
-				=  2. 극장별 조회   \t=
+				=  1. 영화별 조회   \t\t=
+				=  2. 극장별 조회   \t\t=
 				=  3. 빠른 예매   \t\t=
 				=  4. 예매 조회 및 취소   \t=
 				""";
